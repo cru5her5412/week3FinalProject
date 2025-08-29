@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h2 id="cookieCounter">Cookie Count: 0</h2>
-    <h2 id="cookiesPerSecond">CPS:</h2>
+    <div id="cookieTitles">
+      <h2 class="cookieTitle" id="cookieCounter">Cookie Count: 0</h2>
+      <h2 class="cookieTitle" id="cookiesPerSecond">CPS:</h2>
+    </div>
     <img
       src="./images/sprites/cookie (1).png"
       alt="Cookie to be clicked"
       id="theCookie"
-      width="200"
-      height="200"
+      draggable="false"
     />
-    <section id="upgrades"><h2>Upgrades</h2></section>
+    <section id="upgradeSection">
+      <h2 class="upgradeTitle">Upgrades</h2>
+      <div id="upgrades"></div>
+    </section>
   </body>
 </html>
