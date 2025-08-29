@@ -1,5 +1,5 @@
 fromStorage = localStorage.getItem("storedData");
-upgrades = fetch("https://cookie-upgrade-api.vercel.app/api/upgrades");
+setup();
 if (!fromStorage) {
   let cookieData = {
     upgrades: [10, 2, 1], //first index is amount of first upgrade etc
@@ -24,6 +24,20 @@ function gameRunning() {
 function updateLocalStorage() {
   localStorage.setItem("storedData", JSON.stringify(cookieData));
 }
-function upgradeDisplayCreation() {
-  parsedUpgrades = JSON.parse(upgrades);
+async function upgradeDisplayCreation() {
+  let upgradesResponse = await fetch(
+    "https://cookie-upgrade-api.vercel.app/api/upgrades"
+  );
+  upgradesJSON = await upgradesResponse.json();
+  for (let i = 0; i < upgradesJSON.length; i++) {
+    const upgrade = document.createElement("div");
+    upgrade.textContent = `${upgradesJSON[i].name}:\nCost:${upgradesJSON[i].cost}`;
+    upgrade.id = upgradesJSON[i].id;
+    upgrade.className = "upgradeItem";
+    const container = document.getElementById("upgrades");
+    container.appendChild(upgrade);
+  }
+}
+function setup() {
+  upgradeDisplayCreation();
 }
