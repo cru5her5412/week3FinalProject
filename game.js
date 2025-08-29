@@ -78,20 +78,20 @@ function addToCookieCount() {
 }
 
 async function buyingUpgrades(upgradeId) {
-  cps -= upgradesAddToCps;
-  upgradesAddToCps = 0;
   if (cookieData.cookieCount >= upgradesJSON[upgradeId].cost) {
+    cps -= upgradesAddToCps;
+    upgradesAddToCps = 0;
     cookieData.cookieCount -= upgradesJSON[upgradeId].cost;
     console.log(cookieData);
     cookieData.upgrades[upgradeId] = cookieData.upgrades[upgradeId] + 1;
     for (let i = 0; i < cookieData.upgrades.length; i++) {
       upgradesAddToCps += upgradesJSON[i].increase * cookieData.upgrades[i];
     }
+    cps += upgradesAddToCps;
   }
 
   updateDOM();
   updateLocalStorage();
-  cps += upgradesAddToCps;
 }
 function gameRunning() {
   cookieData.cookieCount += cps;

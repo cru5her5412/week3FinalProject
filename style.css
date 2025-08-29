@@ -7,11 +7,5 @@
   color: crimson;
   border: red, 1px, solid;
   display: flex;
-  align-items: right;
-  justify-content: right;
-}
-#upgrades {
-  display: flex;
-  align-items: right;
-  justify-content: right;
+  align-items: end;
 }
