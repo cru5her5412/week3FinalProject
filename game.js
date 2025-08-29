@@ -28,7 +28,6 @@ function gameRunning() {
   cookieData.upgrades = upgradesArray;
   updateLocalStorage();
   updateDOM();
-  console.log("working");
 }
 function updateLocalStorage() {
   localStorage.setItem("storedData", JSON.stringify(cookieData));
@@ -49,7 +48,9 @@ async function upgradeDisplayCreation() {
 }
 function setup() {
   upgradeDisplayCreation();
-  gameActive = setInterval(gameRunning(), 1000);
+  gameActive = setInterval(function () {
+    gameRunning();
+  }, 1000);
 }
 function updateDOM() {
   cookieCounter.textContent = `Cookie count: ${cookieData.cookieCount}`;
