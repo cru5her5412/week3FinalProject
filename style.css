@@ -2,3 +2,16 @@
   margin: 0;
   padding: 0;
 }
+.upgradeItem {
+  background-color: aqua;
+  color: crimson;
+  border: red, 1px, solid;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+#upgrades {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
