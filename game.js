@@ -1,25 +1,34 @@
 fromStorage = localStorage.getItem("storedData");
-setup();
 if (!fromStorage) {
   let cookieData = {
-    upgrades: [10, 2, 1], //first index is amount of first upgrade etc
+    upgrades: [], //first index is amount of first upgrade etc
     cookieCount: 0,
   };
   localStorage.setItem("storedData", JSON.stringify(cookieData));
 } else {
   cookieData = JSON.parse(fromStorage);
 }
-gameActive = setInterval(gameRunning, 1000);
-
-cookie = document.getElementById("theCookie");
+let cps = 0;
+let upgradesArray = [];
+mainCookie = document.getElementById("theCookie");
 cookieCounter = document.getElementById("cookieCounter");
-cookie.addEventListener("click", addToCookieCount());
+mainCookie.addEventListener("click", function () {
+  addToCookieCount();
+});
+setup();
 function addToCookieCount() {
-  cookieData.cookieCount++;
+  cookieData.cookieCount += 1;
+  console.log(cookieData.cookieCount);
+  updateLocalStorage();
+
+  //updateDOM();
 }
 function gameRunning() {
   cookieCounter.textContent = `Cookie Count: ${cookieData.cookieCount}`;
+  cookieData.upgrades = upgradesArray;
   updateLocalStorage();
+  updateDOM();
+  console.log("working");
 }
 function updateLocalStorage() {
   localStorage.setItem("storedData", JSON.stringify(cookieData));
@@ -30,7 +39,7 @@ async function upgradeDisplayCreation() {
   );
   upgradesJSON = await upgradesResponse.json();
   for (let i = 0; i < upgradesJSON.length; i++) {
-    const upgrade = document.createElement("div");
+    const upgrade = document.createElement("button");
     upgrade.textContent = `${upgradesJSON[i].name}:\nCost:${upgradesJSON[i].cost}`;
     upgrade.id = upgradesJSON[i].id;
     upgrade.className = "upgradeItem";
@@ -40,4 +49,9 @@ async function upgradeDisplayCreation() {
 }
 function setup() {
   upgradeDisplayCreation();
+  gameActive = setInterval(gameRunning(), 1000);
 }
+function updateDOM() {
+  cookieCounter.textContent = `Cookie count: ${cookieData.cookieCount}`;
+}
+function buyingUpgrades() {}
