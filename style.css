@@ -6,6 +6,9 @@
   background-color: aqua;
   color: crimson;
   border: red, 1px, solid;
-  display: flex;
+}
+#upgrades {
+  display: inline-flex;
+  flex-direction: column;
   align-items: end;
 }
