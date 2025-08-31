@@ -66,3 +66,13 @@ footer {
   bottom: 10px;
   left: 10px;
 }
+#settingsMenu {
+  position: fixed;
+  left: 84px;
+  bottom: 10px;
+  height: 64px;
+  background-color: red;
+  border: 2px, white, solid;
+  color: black;
+  font-size: 1rem;
+}

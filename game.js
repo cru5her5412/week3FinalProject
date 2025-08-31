@@ -32,6 +32,10 @@ cookiesPerSecond = document.getElementById("cookiesPerSecond");
 mainCookie.addEventListener("click", function () {
   addToCookieCount();
 });
+settingsIcon = document.getElementById("settings");
+settingsIcon.addEventListener("click", function () {
+  settings();
+});
 setup();
 function setup() {
   upgradeDisplayCreation();
@@ -97,4 +101,32 @@ function gameRunning() {
 
   updateLocalStorage();
   updateDOM();
+}
+function settings() {
+  if (!document.getElementById("settingsMenu")) {
+    const settingsMenu = document.createElement("button");
+    settingsMenu.id = "settingsMenu";
+    settingsMenu.textContent =
+      "Press to reset cookies and cps (THIS IS PERMANENT), press on cog again to hide";
+    settingsMenu.style.zIndex = 1000;
+    settingsMenu.ariaLabel =
+      "Remove all cookies and upgrades permanently, press on settings icon to rehide";
+    body = document.querySelector("body");
+    body.appendChild(settingsMenu);
+    settingsMenu.addEventListener("click", function () {
+      cookieData = {
+        upgrades: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        cookieCount: 0,
+      };
+    });
+  } else if (document.getElementById("settingsMenu")) {
+    toBeRemoved = document.getElementById("settingsMenu");
+    toBeRemoved.removeEventListener("click", function () {
+      cookieData = {
+        upgrades: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        cookieCount: 0,
+      };
+    });
+    toBeRemoved.remove();
+  }
 }
