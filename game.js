@@ -40,13 +40,9 @@ function setup() {
   }, 1000);
 }
 async function upgradeDisplayCreation() {
-  try {
-    let upgradesResponse = await fetch(
-      "https://cookie-upgrade-api.vercel.app/api/upgrades"
-    );
-  } catch (error) {
-    console.log(error);
-  }
+  let upgradesResponse = await fetch(
+    "https://cookie-upgrade-api.vercel.app/api/upgrades"
+  );
 
   upgradesJSON = await upgradesResponse.json();
   for (let i = 0; i < upgradesJSON.length; i++) {

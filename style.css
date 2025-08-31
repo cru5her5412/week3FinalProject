@@ -56,3 +56,13 @@ body {
   color: green;
   margin: 1%;
 }
+#settings {
+  height: 64px;
+  z-index: 1;
+}
+footer {
+  background-color: none;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
